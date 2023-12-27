@@ -1,0 +1,9 @@
+venv/
+data/*
+logs/*
+*.csv
+*.txt
+*.index
+*.env
+*.pyc
+!.gitkeep
