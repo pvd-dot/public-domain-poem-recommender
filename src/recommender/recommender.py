@@ -11,10 +11,11 @@ class Recommender:
         poem_text = f"{poem.title}\n" +\
             f"By {poem.author}\n\n" +\
             f"{poem.text}"
-        recommendation_text = f"{explanation}\n\n{poem_text}\n"
-        return recommendation_text
+        return explanation, poem_text
 
     def ask(self, user_query):
+        if user_query == "":
+            return "Please enter a query.", ""
         poem_results = self.vector_searcher.search(user_query, limit=10)
         self.chat.add_assistant_message(prompts.build_response_prompt(user_query, poem_results))
         response = self.chat.respond(user_query)
@@ -23,4 +24,4 @@ class Recommender:
             explanation, id = prompts.extract_response(response)
             return self.build_recommendation_result(id, explanation)
         except ValueError as err:
-            return "Sorry, please try again with a different query."
+            return "Sorry, please try again with a different query.", ""

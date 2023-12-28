@@ -9,8 +9,8 @@ def main():
 
     while True:
         query_text = input("User: ")
-        results = recs.ask(query_text)
-        print(f"Recommender: {results}")
+        explanation, poem_text = recs.ask(query_text)
+        print(f"Recommender: {explanation}\n\n{poem_text}")
 
 if __name__ == "__main__":
     main()

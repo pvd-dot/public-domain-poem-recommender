@@ -1,5 +1,13 @@
 ## Ask the recommender:
 
+Run as streamlit demo:
+
+```
+streamlit run src/recommender/streamlit_demo.py
+```
+
+Run as CLI tool:
+
 ```
 python3 src/recommender/main.py
 ```
