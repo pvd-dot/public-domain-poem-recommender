@@ -91,7 +91,7 @@ def generate_embedding(worker_id, writer):
                     + f" for row {k} (poem: data[]): {exc}"
                 )
                 failures += 1
-            if count > 0 and count % 10 == 0:
+            if count > 0 and count % 1000 == 0:
                 print(
                     f"worker {worker_id} has generated {count} embeddings"
                     + f" out of {total} with {failures} failures."
