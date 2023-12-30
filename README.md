@@ -22,8 +22,16 @@ python3 src/data_preparation/build_index.py
 
 ## Installation:
 
+Set your OpenAI API key in a `.env` file (see `.env.example`):
+
+```
+
+Setup virtual environment and install dependencies:
+
+```
 ```
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
+

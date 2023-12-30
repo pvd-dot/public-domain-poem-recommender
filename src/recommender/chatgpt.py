@@ -1,3 +1,4 @@
+"""Module to interface with OpenAI's Chat API using the ChatGPT class."""
 import collections
 import datetime
 import io
@@ -10,17 +11,25 @@ MODEL = "gpt-3.5-turbo-1106"
 dotenv.load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-Message = collections.namedtuple('Message', ['role', 'content'])
+Message = collections.namedtuple("Message", ["role", "content"])
+
 
 class ChatGPT:
-    debug: bool
-    system_message: Message
-    messages: list[Message]
+    """Wrapper class for OpenAI's chat API to interact with the GPT-3.5 model.
+
+    This class provides methods to send messages to the GPT-3.5 model and
+    receive responses, maintaining the state of a conversation. It supports
+    debug logging, message history tracking, and system message configuration.
+    """
 
     def __init__(self, debug: bool = False, system_message: Message = None):
         self.debug = debug
         self.client = openai.OpenAI(timeout=60)
-        self.debug_log_filename = f"logs/chatgpt-{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}-debug.log"
+        self.debug_log_filename = (
+            "logs/chatgpt-"
+            + f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
+            + " -debug.log"
+        )
         self.system_message = system_message
         self.messages = []
 
@@ -39,13 +48,13 @@ class ChatGPT:
 
     def get_messages(self):
         messages = self.messages
-        if self.system_message != None:
+        if self.system_message is not None:
             messages = [self.system_message] + messages
         return [m._asdict() for m in messages]
 
     def messages_to_string(self):
         messages = self.messages
-        if self.system_message != None:
+        if self.system_message is not None:
             messages = [self.system_message] + messages
         return "\n".join([f"{m.role}: {m.content}" for m in messages])
 
@@ -69,5 +78,5 @@ class ChatGPT:
             print(f"{message.role}: {message.content}")
 
     def debug_log(self, text):
-        with io.open(self.debug_log_filename, 'a', encoding='utf-8') as f:
+        with io.open(self.debug_log_filename, "a", encoding="utf-8") as f:
             f.write(text + "\n")
