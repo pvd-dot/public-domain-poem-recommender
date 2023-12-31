@@ -8,7 +8,7 @@ DATA_SET_WITH_EMBEDDINGS_PATH = "data/data_with_embeddings"
 EMBEDDINGS_CSV_PATH = "data/embeddings.csv"
 EMBEDDINGS_FAISS_PATH = "data/embeddings.faiss"
 
-NUM_THREADS = 5
+NUM_THREADS = 2
 MAX_EMBEDDINGS = 38521
 
 

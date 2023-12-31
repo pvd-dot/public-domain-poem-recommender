@@ -1,4 +1,11 @@
-"""Module for generating embeddings for the poems in the data set."""
+"""Module for generating embeddings for the poems in the data set.
+
+This module appends to a CSV file of poem embeddings. It will not 
+regenerate embeddings already present in the CSV. It runs workers on
+multiple threads to speed up the embedding generation process. If it is 
+interrupted or any errors are encountered, it can be re-run to generate 
+the remaining embeddings without re-doing work.
+"""
 import os
 import tiktoken
 import threading
