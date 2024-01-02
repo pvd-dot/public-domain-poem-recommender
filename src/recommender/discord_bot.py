@@ -11,7 +11,7 @@ import recommender
 dotenv.load_dotenv()
 bot_token = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_MESSAGE_LIMIT = 2000
-BACKTICKS_BUFFER = 6
+BACKTICKS_BUFFER = 8
 
 description = (
     "A bot for recommending poems in the public domain. Type !recpoem"
@@ -36,7 +36,7 @@ async def recpoem(ctx, *, user_request: str):
             return "", text
         lim -= BACKTICKS_BUFFER
         if "\n" not in text and len(text) > lim:
-            return f"```{text[:lim]}```", text[lim:]
+            return f"```\n{text[:lim]}\n```", text[lim:]
         chunk = ""
         next_ = 0
         while text and len(chunk + text[:next_]) <= lim:
@@ -47,7 +47,7 @@ async def recpoem(ctx, *, user_request: str):
             except ValueError:
                 next_ = len(text)
         if chunk:
-            return f"```{chunk}```", text
+            return f"```\n{chunk}\n```", text
         else:
             return "", text
 
