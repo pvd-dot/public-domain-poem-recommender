@@ -19,7 +19,7 @@ import json
 DATA_SET = "mkessle/public-domain-poetry"
 EMBEDDINGS_CSV_PATH = "data/embeddings.csv"
 
-NUM_THREADS = 5
+NUM_THREADS = 2
 MAX_EMBEDDINGS = 38521
 MODEL = "text-embedding-ada-002"
 TOKENIZER = "cl100k_base"
