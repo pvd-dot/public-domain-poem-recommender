@@ -67,7 +67,9 @@ You can ask the poem recommender anything, and it will try to recommend you a re
 Enter 'quit' to exit.
 
 User: Can you recommend me a poem about overcoming hardships?
-Recommender: I recommend the poem "By Rugged Ways" by Paul Laurence Dunbar. This poem speaks about the struggles and challenges faced on difficult paths, but it also conveys the message of perseverance and hope in the face of adversity.
+Recommender: I recommend the poem "By Rugged Ways" by Paul Laurence Dunbar. This poem speaks 
+about the struggles and challenges faced on difficult paths, but it also conveys the message 
+of perseverance and hope in the face of adversity.
 
 By Rugged Ways
 By Paul Laurence Dunbar
@@ -109,7 +111,8 @@ By Paul Laurence Dunbar
     And rest and light are at the end.
 
 User: Can you recommend a poem about finding the sublime in everyday life?
-Recommender: I recommend "Nature." by John Clare. This poem beautifully expresses the poet's delight in the simple, everyday aspects of nature, showcasing the sublime in the ordinary.
+Recommender: I recommend "Nature." by John Clare. This poem beautifully expresses the poet's
+delight in the simple, everyday aspects of nature, showcasing the sublime in the ordinary.
 
 Nature.
 By John Clare
@@ -130,7 +133,9 @@ By John Clare
     Know all I mean, and feel whate'er I feel.
     
 User: Can you recommend me a poem about weariness and disillusionment?
-Recommender: I recommend the poem "Worn Out" by Paul Laurence Dunbar. This poem encapsulates weariness and disillusionment, expressing the feeling of exhaustion from trying and the sense of hopelessness in the face of unfulfilled desires and unending struggles.
+Recommender: I recommend the poem "Worn Out" by Paul Laurence Dunbar. This poem encapsulates
+weariness and disillusionment, expressing the feeling of exhaustion from trying and the 
+sense of hopelessness in the face of unfulfilled desires and unending struggles.
 
 Worn Out
 By Paul Laurence Dunbar
