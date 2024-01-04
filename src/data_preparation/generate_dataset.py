@@ -1,18 +1,20 @@
-"""Module for cleaning data set and building a FAISS index of poem embeddings."""
+"""Module for cleaning data set/adding embeddings/pushing modified dataset.
+
+Does not need to be run unless you intend on modifying the dataset and 
+pushing it to your own Hugging Face account."""
 from datasets import load_dataset
 import csv
 import json
 
 DATA_SET = "mkessle/public-domain-poetry"
+EMBEDDING_DATA_SET = "pvd-dot/public-domain-poetry-with-embeddings"
 DATA_SET_WITH_EMBEDDINGS_PATH = "data/data_with_embeddings"
 EMBEDDINGS_CSV_PATH = "data/embeddings.csv"
 EMBEDDINGS_FAISS_PATH = "data/embeddings.faiss"
 
-MAX_EMBEDDINGS = 38521
-
 
 def main():
-    data = load_dataset(DATA_SET, split=f"train[:{MAX_EMBEDDINGS}]")
+    data = load_dataset(DATA_SET, split="train")
 
     ids = list(range(len(data)))
     data = data.add_column("id", ids)
@@ -32,10 +34,7 @@ def main():
         },
     )
 
-    data_with_embeddings.save_to_disk(DATA_SET_WITH_EMBEDDINGS_PATH)
-
-    data_with_embeddings.add_faiss_index(column="embedding")
-    data_with_embeddings.save_faiss_index("embedding", "data/embeddings.faiss")
+    data_with_embeddings.push_to_hub(EMBEDDING_DATA_SET)
 
 
 if __name__ == "__main__":

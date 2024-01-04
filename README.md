@@ -13,8 +13,21 @@ An LLM/KNN-based poem recommender for a collection of 38.5k poems in the public 
     - The text of the candidate poems is included in the prompt (Retrieval-Augmented Generation)
     - The LLM is given several examples of how to select poems (In-Context learning)
 
+## Setup 
+
+Set your OpenAI API key in a `.env` file (see `.env.example`).
+
+Setup virtual environment and install dependencies:
+
+```
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 ## Running
+
+The embedding dataset has already been generated and uploaded to Hugging Face. The first time the recommender is run, it will download and cache locally the data set with embeddings (~421 MB in size). To modify how the embeddings were generated, see the `Generate embeddings` section.
 
 Run with GUI using streamlit:
 
@@ -34,27 +47,17 @@ Run as Discord bot (requires Discord bot token in `.env` file):
 python3 src/recommender/discord_bot.py
 ```
 
-Note: to run the discord bot persistently, you'll need a hosting solution. I deploy bots for my discord server on AWS with ECS, and use S3/EFS for the FAISS index and data set. 
+Note: to run the discord bot persistently, you'll need a hosting solution. I deploy bots for my discord server on AWS with ECS. 
 
-## Set up
+### Generate embeddings:
 
-Set your OpenAI API key in a `.env` file (see `.env.example`).
+The embeddings data set has already been generated once and uploaded to Hugging Face, so these steps are not necessary if you wish to use the recommender as is.  
 
-Setup virtual environment and install dependencies:
-
-```
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-### Generate embeddings data and build FAISS index (One time setup):
-
-It costs around $4 in OpenAI API costs to generate embeddings for all 38.5k poems.
+The current embedding generation process takes around $4 in OpenAI API costs to generate embeddings for all 38.5k poems. If you want to make modifications to how embeddings are generated, you can update the `EMBEDDING_DATA_SET` variables in `vector_searcher.py` and `generate_dataset.py` and then run: 
 
 ```
 python3 src/data_preparation/generate_embeddings.py 
-python3 src/data_preparation/build_index.py
+python3 src/data_preparation/generate_dataset.py
 ```
 
 ## Sample Recommendations Output

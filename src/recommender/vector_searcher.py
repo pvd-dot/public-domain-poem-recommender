@@ -2,13 +2,11 @@
 import collections
 import openai
 import numpy as np
-from datasets import load_from_disk
+from datasets import load_dataset
 import dotenv
 import os
 
-DATA_SET_WITH_EMBEDDINGS_PATH = "data/data_with_embeddings"
-EMBEDDINGS_FAISS_PATH = "data/embeddings.faiss"
-
+EMBEDDING_DATA_SET = "pvd-dot/public-domain-poetry-with-embeddings"
 MODEL = "text-embedding-ada-002"
 
 dotenv.load_dotenv()
@@ -34,8 +32,8 @@ class VectorSearch:
 
     def __init__(self):
         self.client = openai.OpenAI()
-        self.data = load_from_disk(DATA_SET_WITH_EMBEDDINGS_PATH)
-        self.data.load_faiss_index("embedding", EMBEDDINGS_FAISS_PATH)
+        self.data = load_dataset(EMBEDDING_DATA_SET, split="train")
+        self.data.add_faiss_index(column="embedding")
 
     def convert_to_poem(self, id_):
         row = self.data[int(id_)]
